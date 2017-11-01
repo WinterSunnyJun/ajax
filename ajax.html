@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn" class="no-js" data-livestyle-extension="available">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type">
+<meta content="text/html; charset=utf-8">
+<title></title>		
+<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+<link rel="stylesheet" type="text/css" href="./css/page.css">
+
+<script src="http://runbaijia.qcw100.com/Public/Index/js/jquery-1.8.3.min.js"></script>
+<script src="./js/com.js"></script>
+<script src="./js/prefixfree.min.js"></script>
+</head>
+<body>
+	<div class="all com_bg jk_ban">
+		<span class='rt_logo'><img src="img/rt_logo.png" alt=""></span>
+		<div class='tab_tit tab_ind2'>
+			<a href="index-2.html">品质生活</span></a>
+			<a href="index-2-1.html" class="act"> 匠心体验</a>
+			<a href="index-2-2.html">驾控挑战</a>
+		</div>
+		<div class="tab_con">		
+				<div class="tab_2" >
+					<ul class="">
+					
+					</ul>
+					<div class="com_but_box">
+						<a class="com_but" href='./zuopin.html?typeid=2&id=8'>作品集</a>
+						<a class="com_but" href='./'>返回</a>
+					</div>
+				</div>	
+			</div>
+
+
+		<!-- <div class='com_main'>
+			
+			
+			
+
+		</div> -->
+			
+	</div>
+	<script>
+
+	$(function(){
+		loadAjax();
+
+  var imgurl='http://brandday2.share-pr.com/rest/2.0/index/index/do_img?file='; 
+
+		function loadAjax() {
+		    $.ajax({
+		        type: "post",
+		        url: "http://brandday2.share-pr.com/rest/2.0/index/brandday/type_list",
+		        async: true,
+		        data: {parent_Id:0},
+		        dataType: 'json',
+		        success: function (data) {
+		            var lists = data['response_data']['lists'];
+		            console.log(lists); 
+					// diyige
+		            for (var i = 0; i < lists.length; i++) {						
+		                for (var z = 0; z < lists[i].sub.length; z++) {
+
+			                	if (i==2&&z==2) {
+			                		// if(lists[i].sub[z].disabled !== 1){
+				                		if(lists[i].sub[z].status == 2){
+				                			$('.tab_'+(i+1)+' ul ').append('<li class="jkn act_over" ><a href="./success.html?&typeid='+lists[i].sub[z].id+'"><img src="'+ imgurl +lists[i].sub[z].bg0_uri +'" alt="'+lists[i].sub[z].name+'"><span></span></a></li>');
+				                		}
+				                		else{
+				                			$('.tab_'+(i+1)+' ul ').append('<li class="jkn" ><a href="./cat_show.html?tab_sort='+(i+1)+'&sub_sort='+(z+1)+'&typeid='+lists[i].sub[z].id +'"><img src="'+ imgurl +lists[i].sub[z].bg0_uri +'" alt="'+lists[i].sub[z].name+'"><span></span></a></li>');
+				                		}
+			                		// // }else{
+			                		// 	// 不显示
+			                		// 	$('.tab_'+(i+1)+' ul ').append('<li class="jkn" ><a href="./cat_show.html?tab_sort='+(i+1)+'&sub_sort='+(z+1)+'&typeid='+lists[i].sub[z].id +'"><img src="'+ imgurl +lists[i].sub[z].bg0_uri +'" alt="'+lists[i].sub[z].name+'"><span></span></a></li>')	
+			                		// }
+		                		}
+		                		else {
+
+		                			// if(lists[i].sub[z].disabled !== 1){
+				                		if(lists[i].sub[z].status == 2){
+			                				$('.tab_'+(i+1)+' ul ').append('<li class="act_over"><a href="./success.html?&typeid='+lists[i].sub[z].id+'"><img src="'+ imgurl +lists[i].sub[z].bg0_uri +'" alt="'+lists[i].sub[z].name+'"><span></span></a></li>')
+			                			}
+			                			else{
+			                				$('.tab_'+(i+1)+' ul ').append('<li class=""><a href="./cat_show.html?tab_sort='+(i+1)+'&sub_sort='+(z+1)+'&typeid='+lists[i].sub[z].id +'"><img src="'+ imgurl +lists[i].sub[z].bg0_uri +'" alt="'+lists[i].sub[z].name+'"><span></span></a></li>')
+			                			}
+		                			// }else{
+		                			// 	// 不显示
+		                			// 	$('.tab_'+(i+1)+' ul ').append('<li class="" ><a href="./cat_show.html?tab_sort='+(i+1)+'&sub_sort='+(z+1) +'&typeid='+lists[i].sub[z].id+'"><img src="'+ imgurl +lists[i].sub[z].bg0_uri +'" alt="'+lists[i].sub[z].name+'"><span></span></a></li>')	
+		                			// }
+		                		}
+	                		
+
+		                }
+		            }
+		        },
+		        error: function () {
+		        }
+		    });
+		}
+
+	})
+	</script>
+
+
+</body>
+</html>
